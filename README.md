@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Worldwide Seafarers Recruitment Network (WSRN)
 
 A platform for managing recruitment, legal compliance, and payroll for seafarers, agencies, and shipping companies.
