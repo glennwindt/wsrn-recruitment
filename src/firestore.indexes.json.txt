@@ -1,0 +1,25 @@
+// src/firestore.indexes.json
+
+[
+  {
+    "collectionGroup": "seafarers",
+    "fields": [
+      { "fieldPath": "role", "mode": "ASCENDING" },
+      { "fieldPath": "lastLogin", "mode": "DESCENDING" }
+    ]
+  },
+  {
+    "collectionGroup": "agencies",
+    "fields": [
+      { "fieldPath": "name", "mode": "ASCENDING" },
+      { "fieldPath": "location", "mode": "ASCENDING" }
+    ]
+  },
+  {
+    "collectionGroup": "shipping_companies",
+    "fields": [
+      { "fieldPath": "vesselType", "mode": "ASCENDING" },
+      { "fieldPath": "positionsAvailable", "mode": "DESCENDING" }
+    ]
+  }
+]

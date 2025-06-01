@@ -1,0 +1,2 @@
+Internal App Link:
+https://play.google.com/apps/testing/your.package.name/redeem 

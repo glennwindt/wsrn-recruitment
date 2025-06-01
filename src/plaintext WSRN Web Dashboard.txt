@@ -1,0 +1,6 @@
+1. User logs in via WSRN Web Dashboard
+2. Firebase Auth assigns role adminagencyshippingseafarer
+3. FCM token is generated and linked to user profile
+4. Download link is sent via emailSMS only after successful match
+5. If user is removed from WSRN network, their FCM token is revoked
+6. Future app versions will auto-check validity before allowing login
