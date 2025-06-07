@@ -1,65 +1,89 @@
-{
-  "name": "wsrn-recruitment",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Worldwide Seafarers Recruitment Network (WSRN) - Web Dashboard",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "firebase deploy"
-  },
-  "dependencies": {
-    "firebase": "^9.23.0",
-    "@react-native-firebase/app": "^18.8.0",
-    "@react-native-firebase/auth": "^18.8.0",
-    "@react-native-firebase/firestore": "^18.8.0",
-    "@react-native-firebase/storage": "^18.8.0",
-    "@react-native-firebase/messaging": "^18.8.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.0",
-    "react-firebase-hooks": "^5.1.0",
-    "tailwindcss": "^3.4.0",
-    "autoprefixer": "^10.4.15",
-    "postcss": "^8.4.30",
-    "browserslist": "^4.21.1",
-    "file-type": "^18.3.1",
-    "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.45.0",
-    "prettier": "^3.2.4",
-    "eslint-config-prettier": "^8.11.0",
-    "eslint-plugin-react": "^7.33.2",
-    "husky": "^8.0.0",
-    "lint-staged": "^13.2.3"
-  },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "lint-staged": {
-    "src/**/*.js": [
-      "eslint 'src/**/*.{js,jsx}' --quiet",
-      "git add"
-    ],
-    "src/**/*.jsx": [
-      "eslint 'src/**/*.{js,jsx}' --quiet",
-      "git add"
-    ]
-  }
+// src/App.jsx
+
+import React, { useEffect, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth, db, getUserRole } from './services/firebase';
+import AdminDashboard from './components/AdminDashboard';
+import AgencyDashboard from './components/AgencyDashboard';
+import ShippingCompanyDashboard from './components/ShippingCompanyDashboard';
+import SeafarerApplicationForm from './components/SeafarerApplicationForm';
+
+function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        const role = getUserRole(currentUser.email);
+        setUser({ ...currentUser, role });
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  return (
+    <div className="App">
+      {user ? (
+        <>
+          {user.role === 'admin' && <AdminDashboard />}
+          {user.role === 'agency' && <AgencyDashboard />}
+          {user.role === 'shipping_company' && <ShippingCompanyDashboard />}
+          {user.role === 'seafarer' && <SeafarerApplicationForm />}
+        </>
+      ) : (
+        <LoginForm />
+      )}
+    </div>
+  );
 }
+
+// Simple Login Form
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { login } = require('./services/auth');
+
+  const handleLogin = async () => {
+    setLoading(true);
+    const user = await login(email, password);
+    setLoading(false);
+    if (!user) {
+      // Show login form again
+    }
+  };
+
+  return (
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="bg-white p-6 rounded shadow-md w-80">
+        <h2 className="text-xl font-bold mb-4">WSRN Login</h2>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="border w-full p-2 mb-2"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="border w-full p-2 mb-4"
+        />
+        <button
+          onClick={handleLogin}
+          disabled={loading}
+          className={`bg-blue-600 text-white w-full py-2 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+        >
+          {loading ? 'Signing in...' : 'Sign In'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default App;

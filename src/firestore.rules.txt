@@ -1,9 +1,29 @@
-// src/firestore.rules
-
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow reads and writes if the user is authenticated
-    allow read, write: if request.auth != null;
+    
+    // Only authenticated users can read/write
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Admin-only collections
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.token.email == request.resource.data.email;
+    }
+
+    match /agencies/{agencyId} {
+      allow read, write: if request.auth != null && request.auth.token.role == 'admin';
+    }
+
+    match /shipping_companies/{companyId} {
+      allow read, write: if request.auth != null && (request.auth.token.role == 'admin' || request.auth.token.role == 'shipping_company');
+    }
+
+    match /applications/{applicationId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.auth.token.role == 'seafarer';
+      allow update: if request.auth != null && (request.auth.token.role == 'agency' || request.auth.token.role == 'shipping_company');
+    }
   }
 }
