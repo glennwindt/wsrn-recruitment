@@ -1,3 +1,5 @@
+// src/components/ShippingCompanyDashboard.jsx
+
 import React from 'react';
 
 const ShippingCompanyDashboard = () => {

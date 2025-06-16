@@ -1,6 +1,5 @@
 // src/services/firebase.js
 
-import React from "react";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -8,8 +7,15 @@ import {
   signOut,
   onAuthStateChanged
 } from "firebase/auth";
-import { collection, addDoc, getFirestore } from "firebase/firestore";
-import { trackDeviceToken } from "./fcmTokenRevocation";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
+  doc
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
@@ -22,7 +28,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const firestore = getFirestore(app);
+const db = getFirestore(app);
 
 onAuthStateChanged(auth, async (user) => {
   if (user) {
@@ -33,7 +39,7 @@ onAuthStateChanged(auth, async (user) => {
       lastLogin: new Date().toISOString()
     };
     localStorage.setItem("wsrn_user", JSON.stringify(userData));
-    
+
     // Simulated FCM token registration
     const mockFcmToken = btoa(`${user.uid}:${Date.now()}:MOBILE`);
     trackDeviceToken(user.uid, mockFcmToken);
@@ -51,5 +57,18 @@ function getUserRole(email) {
   return "guest";
 }
 
-export { auth, signInWithEmailAndPassword, signOut };
-export const db = firestore;
+async function trackDeviceToken(uid, fcmToken) {
+  try {
+    const q = query(collection(db, "fcm_tokens"), where("uid", "==", uid));
+    const snapshot = await getDocs(q);
+    snapshot.forEach(async (tokenDoc) => {
+      if (tokenDoc.data().token !== fcmToken) {
+        await deleteDoc(doc(db, "fcm_tokens", tokenDoc.id));
+      }
+    });
+  } catch (error) {
+    console.error("Error tracking device token:", error);
+  }
+}
+
+export { auth, db, signInWithEmailAndPassword, signOut };

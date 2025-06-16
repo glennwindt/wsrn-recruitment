@@ -1,88 +1,68 @@
 // src/App.jsx
 
-import React, { useEffect, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth, db, getUserRole } from './services/firebase';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { auth } from './services/firebase';
 import AdminDashboard from './components/AdminDashboard';
 import AgencyDashboard from './components/AgencyDashboard';
 import ShippingCompanyDashboard from './components/ShippingCompanyDashboard';
 import SeafarerApplicationForm from './components/SeafarerApplicationForm';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       if (currentUser) {
         const role = getUserRole(currentUser.email);
         setUser({ ...currentUser, role });
       } else {
         setUser(null);
       }
+      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
-  return (
-    <div className="App">
-      {user ? (
-        <>
-          {user.role === 'admin' && <AdminDashboard />}
-          {user.role === 'agency' && <AgencyDashboard />}
-          {user.role === 'shipping_company' && <ShippingCompanyDashboard />}
-          {user.role === 'seafarer' && <SeafarerApplicationForm />}
-        </>
-      ) : (
-        <LoginForm />
-      )}
-    </div>
-  );
-}
+  function getUserRole(email) {
+    if (!email) return "guest";
+    if (email.endsWith("@wsrn.com")) return "admin";
+    if (email.includes(".agency")) return "agency";
+    if (email.includes(".shipping")) return "shipping_company";
+    if (email.includes(".seafarer")) return "seafarer";
+    return "guest";
+  }
 
-// Simple Login Form
-function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const { login } = require('./services/auth');
-
-  const handleLogin = async () => {
-    setLoading(true);
-    const user = await login(email, password);
-    setLoading(false);
-    if (!user) {
-      // Show login form again
-    }
-  };
-
-  return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded shadow-md w-80">
-        <h2 className="text-xl font-bold mb-4">WSRN Login</h2>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="border w-full p-2 mb-2"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border w-full p-2 mb-4"
-        />
-        <button
-          onClick={handleLogin}
-          disabled={loading}
-          className={`bg-blue-600 text-white w-full py-2 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-        >
-          {loading ? 'Signing in...' : 'Sign In'}
-        </button>
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p>Loading WSRN dashboard...</p>
       </div>
-    </div>
+    );
+  }
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+
+        <Route path="/dashboard">
+          <Route element={user && user.role === 'admin' ? null : <LoginPage />}>
+            <Route path="/dashboard" element={<AdminDashboard />} />
+          </Route>
+        </Route>
+
+        <Route path="/apply">
+          <Route element={user && user.role === 'seafarer' ? null : <LoginPage />}>
+            <Route path="/apply" element={<SeafarerApplicationForm />} />
+          </Route>
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
