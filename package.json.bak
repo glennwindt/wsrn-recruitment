@@ -1,0 +1,53 @@
+{
+  "name": "wsrn-recruitment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dashboard for Worldwide Seafarers Recruitment Network",
+  "homepage": "https://wsrn-recruitment.web.app",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && firebase deploy",
+    "serve": "firebase emulators:start",
+    "lint": "eslint src --ext .js,.jsx"
+  },
+  "dependencies": {
+    "firebase": "^10.11.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0",
+    "react-firebase-hooks": "^5.1.0",
+    "react-scripts": "^5.0.1",
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.30",
+    "browserslist": "^4.21.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "prettier": "^3.2.4",
+    "eslint-config-prettier": "^8.11.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
