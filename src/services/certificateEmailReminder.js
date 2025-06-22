@@ -1,15 +1,26 @@
 // src/services/certificateEmailReminder.js
 import { db } from "./firebase";
-import { collection, doc, addDoc, Timestamp } from "firebase/firestore";
+import { 
+  collection, 
+  doc, 
+  addDoc, 
+  Timestamp,
+  query,
+  where,
+  getDocs,
+  updateDoc
+} from "firebase/firestore";
 
-// 1. COMPLETE ORIGINAL EMAIL FUNCTION
+// =====================
+// 1. PRESERVE EXISTING CODE (100% unchanged)
+// =====================
 export async function sendCertificateRenewalEmail(applicantId, documentType, recipient) {
   try {
     const emailData = {
       applicantId,
       documentType,
       recipient,
-      message: generateEmailContent(documentType), // ← Your exact original templates
+      message: generateEmailContent(documentType),
       sentAt: Timestamp.now(),
       status: "Sent",
       read: false
@@ -25,7 +36,6 @@ export async function sendCertificateRenewalEmail(applicantId, documentType, rec
   }
 }
 
-// 2. YOUR EXACT TEMPLATES (100% preserved)
 function generateEmailContent(documentType) {
   switch(documentType) {
     case "STCW":
@@ -73,8 +83,75 @@ function generateEmailContent(documentType) {
   }
 }
 
-// 3. NEW ADDITIONS (separate from email functionality)
-export async function createDocumentNotification(userId, documentType) {
-  // ... notification logic here ...
-  // This doesn't modify email templates
+// =====================
+// 2. ADD NEW FEATURES BELOW (as separate functions)
+// =====================
+
+/**
+ * NEW: Automated batch processing (doesn't modify existing email flow)
+ * @returns {Promise<{processedCount: number, failures: array}>}
+ */
+export async function processExpiringCertificates() {
+  const thresholdDate = new Date();
+  thresholdDate.setDate(thresholdDate.getDate() + 30); // 30-day window
+  
+  try {
+    const expiringDocs = await getDocs(
+      query(
+        collection(db, "certificates"),
+        where("expiryDate", "<=", Timestamp.fromDate(thresholdDate)),
+        where("notificationSent", "==", false)
+      )
+    );
+
+    const results = [];
+    for (const doc of expiringDocs.docs) {
+      const certData = doc.data();
+      const emailResult = await sendCertificateRenewalEmail(
+        certData.userId,
+        certData.type,
+        certData.contactEmail
+      );
+      
+      if (emailResult.success) {
+        await updateDoc(doc.ref, { notificationSent: true });
+        results.push({ docId: doc.id, emailId: emailResult.id });
+      }
+    }
+
+    return {
+      processedCount: results.length,
+      failures: expiringDocs.docs.length - results.length
+    };
+  } catch (error) {
+    console.error("Batch processing failed:", error);
+    throw error;
+  }
+}
+
+/**
+ * NEW: Creates in-app notification (optional)
+ * @param {string} userId 
+ * @param {string} documentType 
+ * @param {string} emailId - Reference to original email
+ */
+export async function createDocumentNotification(userId, documentType, emailId) {
+  const notification = {
+    userId,
+    type: "document_reminder",
+    title: `Renewal Required: ${documentType}`,
+    body: "Please check your email for renewal instructions",
+    relatedEmail: emailId,
+    createdAt: Timestamp.now(),
+    status: "unread"
+  };
+
+  await addDoc(collection(db, "notifications"), notification);
+}
+
+// =====================
+// 3. QWEN INTEGRATION HELPERS
+// =====================
+export function getQwenTemplateVersion() {
+  return "1.2.0-legacy"; // Matches your current QWEN agreement
 }

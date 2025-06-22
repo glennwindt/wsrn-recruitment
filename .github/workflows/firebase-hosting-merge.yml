@@ -15,5 +15,5 @@ jobs:
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_WSRN_E96CC }}
-          projectId: wrsn-e96cc
+          projectId: wsrn-e96cc
           siteName: wsrn-recruitment
