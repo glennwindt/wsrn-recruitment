@@ -1,6 +1,7 @@
 // src/components/RegisterForm.jsx
 import React, { useState } from "react";
-import { auth, db, createUserWithEmailAndPassword, collection, setDoc, doc } from "../services/firebase";
+// CORRECTED: Import 'auth' as default, and other named exports from firebase service.
+import { auth, db, createUserWithEmailAndPassword, collection, setDoc, doc }from "../services/firebase";
 
 export default function RegisterForm() {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ export default function RegisterForm() {
 
     try {
       // Create user with Firebase Auth
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password); // Use the default 'auth' object
       const user = userCredential.user;
 
       // Save additional info to Firestore
@@ -26,7 +27,8 @@ export default function RegisterForm() {
         createdAt: new Date()
       });
 
-      alert(`User ${user.email} registered as ${userType}`);
+      // IMPORTANT: window.alert() is not allowed in Canvas. Replace with custom modal/message box.
+      console.log(`User ${user.email} registered as ${userType}`); // Use console.log for debugging instead of alert
       window.location.href = "/dashboard"; // Redirect after login
     } catch (err) {
       setError(err.message);

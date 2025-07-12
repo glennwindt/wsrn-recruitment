@@ -1,0 +1,133 @@
+/* === Dashboard Layout === */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fb;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* === Cards and Sections === */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.dashboard-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: #003366;
+}
+
+.card-paragraph {
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.card-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #0077cc;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #003366;
+}
+
+.feature-list {
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.95rem;
+}
+
+.feature-list li {
+  margin-bottom: 0.5rem;
+}
+
+/* === Buttons === */
+.dashboard-button {
+  background-color: #003366;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dashboard-button:hover {
+  background-color: #00509e;
+}
+
+/* === Footer === */
+.dashboard-footer {
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: #888;
+  text-align: center;
+}
+
+/* === Badge Alerts (Membership Warning etc.) === */
+.alert-badge {
+  background-color: #ffc107;
+  color: #000;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+/* === Mobile Sidebar Toggle (if present) === */
+.sidebar-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .dashboard-main {
+    padding: 1rem;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

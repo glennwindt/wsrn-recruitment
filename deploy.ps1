@@ -1,13 +1,13 @@
-# deploy.ps1
+﻿# deploy.ps1
 # Purpose: Build and Deploy WSRN Dashboard to Firebase Hosting
 
 Write-Host "🚀 Starting WSRN Dashboard Deployment" -ForegroundColor Green
 
 # Step 1: Navigate to Project Folder
-Set-Location C:\Users\User\wrsn-recruitment
+Set-Location C:\Users\User\wsrn-recruitment
 
 # Step 2: Clean Install Dependencies
-Write-Host "🗑 Clearing node_modules and package-lock.json..." -ForegroundColor Yellow
+Write-Host "🧹 Clearing node_modules and package-lock.json..." -ForegroundColor Yellow
 Remove-Item -Recurse -Force node_modules -ErrorAction SilentlyContinue
 Remove-Item -Force package-lock.json -ErrorAction SilentlyContinue
 
@@ -24,4 +24,4 @@ firebase deploy --only hosting
 
 # Step 5: Final Message
 Write-Host "✅ Deployment Complete!" -ForegroundColor Green
-Write-Host "Your WSRN dashboard is now live at https://wsrn-recruitment.web.app"  -ForegroundColor Blue
+Write-Host "Your WSRN dashboard is now live at https://wsrn-recruitment.web.app" -ForegroundColor Blue

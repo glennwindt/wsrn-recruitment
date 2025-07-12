@@ -1,0 +1,146 @@
+/* === Home Layout === */
+.homepage-container {
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+  background: #001f3f;
+}
+
+/* Header */
+.homepage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background-color: #002f6c;
+}
+
+.homepage-header .logo {
+  width: 120px;
+}
+
+.homepage-header nav a {
+  margin-left: 1.5rem;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.homepage-header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero Section */
+.homepage-hero {
+  position: relative;
+  height: 80vh;
+  background-image: url('../images/lisbon-msc.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Overlay with glowing gradient */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 51, 102, 0.6),
+    rgba(0, 51, 102, 0.8)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Hero Text Animations */
+.overlay h1,
+.overlay p,
+.get-started-btn {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.overlay p {
+  animation-delay: 0.3s;
+}
+
+.get-started-btn {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.overlay h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.overlay p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+/* Stats row */
+.mini-stats {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #ddd;
+  display: flex;
+  gap: 2rem;
+}
+
+/* Get Started Button */
+.get-started-btn {
+  background-color: #00509e;
+  color: #fff;
+  padding: 0.75rem 1.6rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: box-shadow 0.3s ease;
+}
+
+.get-started-btn:hover {
+  background-color: #0074cc;
+  box-shadow: 0 0 12px #0074cc;
+}
+
+/* Footer */
+.homepage-footer {
+  background-color: #004080;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .overlay h1 {
+    font-size: 2rem;
+  }
+
+  .overlay p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .mini-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+

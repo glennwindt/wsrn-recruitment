@@ -1,5 +1,70 @@
 import React, { useState } from "react";
 
+export default function TaxReportGenerator() {
+  const [loans, setLoans] = useState([]);
+  const [meetings, setMeetings] = useState([]);
+  const [reportVisible, setReportVisible] = useState(false);
+
+  const taxYear = new Date().getFullYear();
+  const calculateLoanPayments = () => {
+    return loans.reduce((acc, l) => acc + parseFloat(l.paidSoFar || 0), 0);
+  };
+
+  const calculateMeetingCosts = () => {
+    return meetings.reduce((acc, m) =>
+      acc + parseFloat(m.hospitality || 0) + parseFloat(m.travel || 0), 0);
+  };
+
+  const generateSummary = () => {
+    const loanPaid = calculateLoanPayments();
+    const meetingSpent = calculateMeetingCosts();
+    const totalDeductibles = loanPaid + meetingSpent;
+
+    return {
+      year: taxYear,
+      loanPayments: loanPaid.toFixed(2),
+      meetingCosts: meetingSpent.toFixed(2),
+      totalDeductible: totalDeductibles.toFixed(2)
+    };
+  };
+
+  const report = generateSummary();
+
+  return (
+    <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
+      <h2 className="text-2xl font-bold mb-6">🧾 Tax Report Generator — WSRN {taxYear}</h2>
+
+      <div className="mb-6">
+        <p className="text-sm text-gray-300">🔐 This summary merges deductible data across finance modules:</p>
+        <ul className="list-disc pl-6 text-gray-400 mt-2 text-sm space-y-1">
+          <li>Loan payments from <strong>LoanTrackerModule.jsx</strong></li>
+          <li>Meeting costs from <strong>MeetingCostRegistry.jsx</strong></li>
+          <li>(Optional) Procurement tracker and stock valuations</li>
+        </ul>
+      </div>
+
+      <button
+        onClick={() => setReportVisible(true)}
+        className="w-full bg-indigo-600 hover:bg-indigo-700 py-3 rounded font-semibold transition mb-6"
+      >
+        📊 Generate Tax Summary
+      </button>
+
+      {reportVisible && (
+        <div className="bg-gray-900 p-4 rounded text-sm text-gray-300 border border-indigo-700">
+          <h3 className="font-semibold text-lg mb-3">📘 {taxYear} Deductible Summary</h3>
+          <p>💸 Loan Payments: <span className="font-mono text-green-400">€{report.loanPayments}</span></p>
+          <p>📋 Meeting Costs: <span className="font-mono text-yellow-400">€{report.meetingCosts}</span></p>
+          <hr className="my-3 border-gray-700" />
+          <p className="text-md font-bold">📐 Total Deductible: <span className="text-green-300">€{report.totalDeductible}</span></p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+import React, { useState } from "react";
+
 export default function TaxReportGenerator({ userRole = "admin" }) {
   const [month, setMonth] = useState(new Date().toISOString().slice(0, 7)); // YYYY-MM
   const [report, setReport] = useState(null);

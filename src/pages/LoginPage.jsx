@@ -1,55 +1,62 @@
-// src/pages/LoginPage.jsx
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import firebase from "../services/firebase";
 
-import React, { useState } from 'react';
-import { auth, signInWithEmailAndPassword } from '../services/firebase';
-import { useNavigate } from 'react-router-dom';
+const { auth, signInWithEmailAndPassword } = firebase;
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/');
+      navigate("/dashboard");
     } catch (err) {
-      setError('Authentication failed. Please check your credentials.');
+      setError("Login failed. Please check your credentials.");
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded shadow-md w-80">
-        <h2 className="text-xl font-bold text-blue-700 mb-4">WSRN Login</h2>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="border w-full p-2 mb-2"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border w-full p-2 mb-4"
-        />
-        <button
-          onClick={handleLogin}
-          className="bg-blue-600 text-white w-full py-2 hover:bg-blue-700 transition"
-        >
-          Sign In
-        </button>
-        <div className="mt-4 text-sm text-gray-500 text-center">
-          Forgot password? Contact support@wsrn.com
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white px-4">
+      <div className="w-full max-w-md bg-gray-800 p-8 rounded-lg shadow-lg">
+        <div className="text-center mb-6">
+          <img src="/wsrn-logo.png" alt="WSRN Logo" className="h-16 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold">Login to WSRN</h2>
+          <p className="text-sm text-gray-400">Access your dashboard</p>
         </div>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded font-semibold transition"
+          >
+            Log In
+          </button>
+        </form>
       </div>
     </div>
   );
 };
 
 export default LoginPage;
+

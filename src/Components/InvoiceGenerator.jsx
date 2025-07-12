@@ -1,7 +1,20 @@
 import React from "react";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import "../../styles/dashboard.css"; // optional for styling support
 
 export default function InvoiceGenerator({ invoices, agencyName }) {
   const totalCommission = invoices.reduce((sum, inv) => sum + parseFloat(inv.wsrnCommission), 0);
+
+  const handleDownloadPDF = (invId) => {
+    const targetElement = document.getElementById(`invoice-${invId}`);
+    html2canvas(targetElement).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, "PNG", 10, 10);
+      pdf.save(`WSRN_Invoice_${invId}.pdf`);
+    });
+  };
 
   return (
     <div>
@@ -21,12 +34,12 @@ export default function InvoiceGenerator({ invoices, agencyName }) {
         </thead>
         <tbody>
           {invoices.map((inv, index) => (
-            <tr key={index} className="hover:bg-gray-700 transition border-b border-gray-700">
+            <tr key={index} id={`invoice-${inv.id}`} className="hover:bg-gray-700 transition border-b border-gray-700">
               <td className="py-3">{inv.id}</td>
               <td className="py-3">{inv.date}</td>
               <td className="py-3">{inv.crewMember}</td>
-              <td className="py-3">€{inv.grossSalary}</td>
-              <td className="py-3">€{inv.wsrnCommission}</td>
+              <td className="py-3">€{parseFloat(inv.grossSalary).toFixed(2)}</td>
+              <td className="py-3">€{parseFloat(inv.wsrnCommission).toFixed(2)}</td>
               <td className="py-3">
                 <span className={`inline-block px-2 py-1 rounded text-xs ${
                   inv.status === "Paid" ? "bg-green-900/30 text-green-400" :
@@ -37,7 +50,12 @@ export default function InvoiceGenerator({ invoices, agencyName }) {
                 </span>
               </td>
               <td className="py-3 text-right">
-                <button className="text-blue-400 hover:text-blue-300 text-sm">Download PDF</button>
+                <button
+                  onClick={() => handleDownloadPDF(inv.id)}
+                  className="text-blue-400 hover:text-blue-300 text-sm"
+                >
+                  Download PDF
+                </button>
               </td>
             </tr>
           ))}
@@ -53,3 +71,4 @@ export default function InvoiceGenerator({ invoices, agencyName }) {
     </div>
   );
 }
+
