@@ -1,21 +1,55 @@
+// src/pages/About.jsx
+
 import React from "react";
+import shipBackground from "../assets/container-ship.jpg";
 
 export default function About() {
+  const backgroundStyle = {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(${shipBackground})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+    padding: "2rem",
+    color: "#c9d1d9",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    minHeight: "100vh",
+    overflowX: "hidden" // ✅ Prevent horizontal scroll
+  };
+
+  const sectionStyle = {
+    backgroundColor: "rgba(22, 27, 34, 0.6)",
+    padding: "1.5rem",
+    borderRadius: "10px",
+    marginBottom: "2rem",
+    maxWidth: "900px",
+    marginLeft: "auto",
+    marginRight: "auto",
+    boxShadow: "0 0 20px rgba(0, 0, 0, 0.3)",
+    boxSizing: "border-box" // ✅ Prevent overflow
+  };
+
   return (
-    <main style={{
-      backgroundColor: "#0d1117",
-      color: "#c9d1d9",
-      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-      padding: "2rem",
-      maxWidth: "1200px",
-      margin: "0 auto"
-    }}>
+    <main style={backgroundStyle}>
       <header style={{ textAlign: "center", marginBottom: "2rem" }}>
-        <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
+        <h1 style={{
+          fontSize: "2.5rem",
+          fontWeight: "900",
+          marginBottom: "0.5rem",
+          color: "#ffffff"
+        }}>
           Worldwide Seafarers Recruitment Network
         </h1>
-        <p style={{ color: "#8b949d" }}>Your Voyage, Our Mission</p>
-        <p style={{ fontStyle: "italic", color: "#58a6ff", marginTop: "0.5rem" }}>
+        <p style={{
+          color: "#cce0ff",
+          fontWeight: "600"
+        }}>
+          Your Voyage, Our Mission
+        </p>
+        <p style={{
+          fontStyle: "italic",
+          color: "#58a6ff",
+          marginTop: "0.5rem"
+        }}>
           Portugal is our harbor—but the world is our ocean.
         </p>
       </header>
@@ -67,12 +101,7 @@ export default function About() {
           ]
         }
       ].map(({ title, content }, index) => (
-        <section key={index} style={{
-          backgroundColor: "#161b22",
-          padding: "1.5rem",
-          borderRadius: "10px",
-          marginBottom: "2rem"
-        }}>
+        <section key={index} style={sectionStyle}>
           <h2 style={{
             fontSize: "1.8rem",
             color: "#58a6ff",
@@ -100,17 +129,6 @@ export default function About() {
           ← Back to Homepage
         </a>
       </div>
-
-      {/* Footer */}
-      <footer style={{
-        textAlign: "center",
-        marginTop: "5rem",
-        color: "#7d8590"
-      }}>
-        <p>© {new Date().getFullYear()} WSRN – Built with ❤️ in Portugal</p>
-        <p>For global maritime staffing and legal compliance under Portuguese Law</p>
-      </footer>
     </main>
   );
 }
-

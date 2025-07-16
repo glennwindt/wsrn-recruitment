@@ -2,8 +2,9 @@ import React, { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
+// 🛡 Auth Provider wraps your app and delivers role state
 export const AuthProvider = ({ children }) => {
-  const [role, setRole] = useState(""); // e.g. "admin", "seafarer", etc.
+  const [role, setRole] = useState("");
 
   return (
     <AuthContext.Provider value={{ role, setRole }}>
@@ -12,5 +13,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
-
+// 🎣 Custom hook for consuming the auth context
+export const useAuth = () => {
+  return useContext(AuthContext);
+};

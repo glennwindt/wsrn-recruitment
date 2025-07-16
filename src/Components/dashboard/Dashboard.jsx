@@ -1,5 +1,5 @@
 import React from "react";
-import DashboardPanel from "../components/Overview/Dashboard";
+import DashboardPanel from "../components/overview/Dashboard";
 
 export default function Dashboard() {
   return (

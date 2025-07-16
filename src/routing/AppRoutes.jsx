@@ -5,6 +5,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 
 // Public pages
+import LandingPage      from "../pages/LandingPage";
 import LoginPage        from "../pages/LoginPage";
 import RegisterPage     from "../pages/RegisterPage";
 import UnauthorizedPage from "../pages/UnauthorizedPage";
@@ -30,11 +31,13 @@ export default function AppRoutes() {
       <Routes>
 
         {/* Public */}
-        <Route path="/login"        element={<LoginPage />} />
-        <Route path="/register"     element={<RegisterPage />} />
+        <Route path="/"         element={<LandingPage />} />
+        <Route path="/landing"  element={<LandingPage />} />
+        <Route path="/login"    element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/privacy"  element={<PrivacyPolicy />} />
+        <Route path="/about"    element={<About />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
-        <Route path="/privacy"      element={<PrivacyPolicy />} />
-        <Route path="/about"        element={<About />} />
 
         {/* Protected */}
         <Route
@@ -79,10 +82,10 @@ export default function AppRoutes() {
         />
 
         {/* Catch-all */}
-        <Route path="/"  element={<Navigate to="/login" replace />} />
-        <Route path="*"  element={<Navigate to="/unauthorized" replace />} />
+        <Route path="*" element={<Navigate to="/unauthorized" replace />} />
 
       </Routes>
     </Suspense>
   );
 }
+

@@ -1,0 +1,137 @@
+/* 🌊 Base Styling */
+.landing-page {
+  font-family: 'Segoe UI', sans-serif;
+  color: #f4f9fc;
+  background-color: #0d1b2a;
+  overflow-x: hidden;
+}
+
+/* 🖼️ Full-Screen Sections */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* 🌅 Hero Section */
+.hero .overlay {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.15); /* Brighter overlay */
+  padding: 3rem;
+  border-radius: 8px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #fcd460;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cta-buttons button {
+  background-color: #fcd460;
+  color: #0d1b2a;
+  border: none;
+  padding: 0.8rem 1.4rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-buttons button:hover {
+  background-color: #ffdc75;
+}
+
+/* 🌉 How It Works Section */
+.how-it-works .overlay {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2); /* Brighter overlay */
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.how-it-works h2 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.how-it-works ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.how-it-works ul li {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ⛵ Audience Section */
+.audience .overlay {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2); /* Brighter overlay */
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.audience h2 {
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.audience-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 300px;
+  flex: 1;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* 📱 Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .audience-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+

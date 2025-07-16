@@ -1,18 +1,36 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function UnauthorizedPage() {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-6">
-      <div className="max-w-md w-full bg-gray-800 p-8 rounded-lg shadow-lg text-center">
-        <h2 className="text-2xl font-bold mb-4">🔒 Access Denied</h2>
-        <p className="mb-6 text-gray-400">
-          You do not have permission to access this section of the platform.
-        </p>
-        <Link to="/" className="text-blue-400 underline hover:text-blue-300">
-          ← Back to Homepage
-        </Link>
-      </div>
+    <div style={{
+      height: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#1c1c1e",
+      color: "#f5f5f7",
+      flexDirection: "column",
+      textAlign: "center"
+    }}>
+      <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>🚫 Access Denied</h1>
+      <p>You do not have permission to access this page.</p>
+
+      <button onClick={() => navigate("/")} style={{
+        marginTop: "1.5rem",
+        padding: "0.75rem 1.5rem",
+        backgroundColor: "#007aff",
+        color: "#fff",
+        border: "none",
+        borderRadius: "6px",
+        fontWeight: "bold",
+        cursor: "pointer"
+      }}>
+        Return Home
+      </button>
     </div>
   );
 }
+

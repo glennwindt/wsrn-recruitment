@@ -1,54 +1,56 @@
 // src/services/documentUploadAPI.js
-import { db, storage } from "./firebase"; // Modified import
-import { 
-  collection, 
-  doc, 
-  addDoc, 
-  updateDoc 
+import { db, storage } from "./firebase";
+import {
+  collection,
+  doc,
+  addDoc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  query,
+  where
 } from "firebase/firestore";
-import { 
-  ref, 
-  uploadBytesResumable, 
-  getDownloadURL 
+import {
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  deleteObject
 } from "firebase/storage";
 import { checkAppAccess } from "./mobileSecurity";
 
-// 1. PRESERVED EXISTING FUNCTIONS (with enhancements)
+
+// ✅ Upload Certificate Logic (Preserved)
 export async function uploadCertificate(documentData, userId) {
   if (!checkAppAccess()) {
     throw new Error('🚫 Session expired or invalid permissions');
   }
-
   if (!documentData.file || !documentData.type) {
     console.warn("🚫 Missing required document data.");
     return { success: false, error: "Missing file or document type" };
   }
 
   try {
-    // NEW: First upload the file to storage
     const storagePath = `certificates/${userId}/${documentData.type}_${Date.now()}`;
     const storageRef = ref(storage, storagePath);
     const uploadTask = uploadBytesResumable(storageRef, documentData.file);
 
-    // Wait for upload to complete
     await uploadTask;
     const downloadURL = await getDownloadURL(storageRef);
 
-    // Modified: Store metadata in Firestore
     const documentRef = await addDoc(collection(db, "user_documents"), {
       ...documentData,
-      fileURL: downloadURL, // NEW
-      storagePath: storagePath, // NEW
+      fileURL: downloadURL,
+      storagePath,
       userId,
       uploadedAt: new Date().toISOString(),
       status: "Pending Review"
     });
 
     console.log(`📄 Document ${documentData.type} uploaded for user ${userId}`);
-    return { 
-      success: true, 
+    return {
+      success: true,
       docId: documentRef.id,
-      fileURL: downloadURL 
+      fileURL: downloadURL
     };
   } catch (err) {
     console.error("❌ Failed to upload document:", err.message);
@@ -56,7 +58,51 @@ export async function uploadCertificate(documentData, userId) {
   }
 }
 
-// 2. ENHANCED STATUS UPDATE (now with storage cleanup)
+
+// ✅ New Generic Upload Interface (Optional Wrapper)
+export async function uploadDocument(wsrnId, file, docType) {
+  return await uploadCertificate({ file, type: docType }, wsrnId);
+}
+
+
+// ✅ New: Fetch Documents for Dashboard Display
+export async function fetchDocuments(wsrnId) {
+  try {
+    const docsRef = collection(db, "user_documents");
+    const q = query(docsRef, where("userId", "==", wsrnId));
+    const snapshot = await getDocs(q);
+    const documents = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    return documents;
+  } catch (err) {
+    console.error("❌ Failed to fetch documents:", err.message);
+    return [];
+  }
+}
+
+
+// ✅ New: Sync Renewal Alerts
+export async function syncRenewal(wsrnId, docType) {
+  try {
+    const message = `📢 WSRN Alert: Renewal of ${docType} received for ${wsrnId}`;
+    console.log(message);
+    // Optional: Log to Firestore or trigger admin email
+    await addDoc(collection(db, "wsrn_notifications"), {
+      wsrnId,
+      type: "DocumentRenewal",
+      docType,
+      message,
+      timestamp: new Date().toISOString()
+    });
+  } catch (err) {
+    console.error("❌ Failed to sync renewal:", err.message);
+  }
+}
+
+
+// ✅ Update Document Status and Cleanup
 export async function updateDocumentStatus(documentId, newStatus) {
   try {
     const documentRef = doc(db, "user_documents", documentId);
@@ -65,7 +111,6 @@ export async function updateDocumentStatus(documentId, newStatus) {
       reviewedAt: new Date().toISOString()
     };
 
-    // NEW: Auto-cleanup for rejected documents
     if (newStatus === "Rejected") {
       const docSnapshot = await getDoc(documentRef);
       if (docSnapshot.exists()) {
@@ -87,7 +132,8 @@ export async function updateDocumentStatus(documentId, newStatus) {
   }
 }
 
-// 3. NEW FILE UPLOAD FUNCTIONALITY
+
+// ✅ Optional: Progress-Aware Upload (for UI feedback)
 export const uploadFileWithProgress = (file, path) => {
   return new Promise((resolve, reject) => {
     const storageRef = ref(storage, path);
@@ -97,7 +143,6 @@ export const uploadFileWithProgress = (file, path) => {
       (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log(`Upload progress: ${Math.round(progress)}%`);
-        // You can add this to your UI state if needed
       },
       (error) => {
         reject({
@@ -124,3 +169,4 @@ export const uploadFileWithProgress = (file, path) => {
     );
   });
 };
+
