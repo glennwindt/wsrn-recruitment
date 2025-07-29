@@ -1,5 +1,5 @@
 import { collection, query, getDocs, updateDoc, doc } from "firebase/firestore";
-import { db } from "./firebase";
+import { db } from "../import { db } from "../services/firebase";";
 
 const applicationsRef = collection(db, "applicants");
 
@@ -41,8 +41,7 @@ export async function notifyUserOfExpiry(userId) {
 
   if (expired.length > 0) {
     alert(`⚠️ Some of your documents have expired. Please renew them before applying.`);
-
-    // In real app, send via email/SMS
     console.log("Expired documents for user:", expired);
   }
 }
+

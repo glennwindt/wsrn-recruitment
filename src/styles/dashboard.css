@@ -1,17 +1,30 @@
-/* === Dashboard Layout === */
+/* === Layout Structure === */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f7fb;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* === Dashboard Grid === */
 .dashboard-container {
   display: flex;
-  min-height: 100vh;
-  background: #f5f7fb;
-  font-family: 'Segoe UI', sans-serif;
+  flex: 1;
+  background-color: #f5f7fb;
 }
 
 .dashboard-sidebar {
   width: 250px;
   background-color: #002f6c;
-  color: white;
+  color: #ffffff;
   padding: 2rem;
-  position: relative;
   z-index: 2;
 }
 
@@ -21,6 +34,7 @@
   overflow-y: auto;
 }
 
+/* === Headers === */
 .dashboard-header h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -29,20 +43,22 @@
 
 /* === Cards === */
 .dashboard-card {
-  background: #ffffff;
+  background-color: #ffffff;
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
+/* === Section Titles === */
 .section-title {
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 600;
   color: #003366;
   margin-bottom: 1rem;
 }
 
+/* === Feature List === */
 .feature-list {
   list-style: none;
   padding-left: 0;
@@ -52,21 +68,50 @@
   margin-bottom: 0.5rem;
 }
 
-/* === Alerts === */
+/* === Alert Badge === */
 .alert-badge {
   background-color: #ffc107;
-  color: #000;
+  color: #000000;
   padding: 0.4rem 0.6rem;
   border-radius: 4px;
   font-size: 0.85rem;
   display: inline-block;
 }
 
-/* === Footer === */
-.dashboard-footer {
-  margin-top: 3rem;
-  font-size: 0.85rem;
-  color: #666;
+/* === Heatmap === */
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.heatmap-cell {
+  padding: 10px;
+  border-radius: 6px;
+  color: #ffffff;
   text-align: center;
+}
+
+/* === Footer === */
+.footer-wrapper {
+  background-color: #0d1b2a;
+  color: #f4f9fc;
+  text-align: center;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  margin-top: auto;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* === Responsive Tweaks === */
+@media (max-width: 600px) {
+  .main-content,
+  .dashboard-main,
+  .footer-wrapper {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
 }
 

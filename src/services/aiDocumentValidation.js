@@ -1,18 +1,15 @@
-// src/services/aiDocumentValidation.js
-
-import { db } from "../services/firebase";
+import { db } from "../import { db } from "../services/firebase";";
 import { collection, doc, updateDoc } from "firebase/firestore";
 
 /**
  * Simulates OCR document scanning
  */
 export async function scanDocument(fileBlob) {
-  // In real app, this would use Google Cloud Vision / Firebase Functions
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         success: true,
-        confidence: Math.random() * 0.4 + 0.7, // Between 0.7 - 1.1
+        confidence: Math.random() * 0.4 + 0.7,
         data: {
           name: "John Doe",
           passportNumber: "P123456789",
@@ -24,9 +21,6 @@ export async function scanDocument(fileBlob) {
   });
 }
 
-/**
- * Validates document based on type
- */
 export async function validateUploadedDocument(documentId, fileBlob, documentType) {
   if (!fileBlob || !documentType) {
     console.warn("🚫 No document provided for validation.");
@@ -45,7 +39,6 @@ export async function validateUploadedDocument(documentId, fileBlob, documentTyp
       scannedAt: new Date().toISOString()
     };
 
-    // Update Firestore record
     const documentRef = doc(db, "user_documents", documentId);
     await updateDoc(documentRef, {
       validated: true,
@@ -57,9 +50,9 @@ export async function validateUploadedDocument(documentId, fileBlob, documentTyp
 
     console.log(`🧠 AI Validation completed for ${documentId}:`, validationResult);
     return validationResult;
-
   } catch (err) {
     console.error("❌ AI Document Validation failed:", err.message);
     return { success: false, error: err.message };
   }
 }
+

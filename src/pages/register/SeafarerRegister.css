@@ -1,20 +1,27 @@
 /* 🌊 Seafarer Registration Page */
 .seafarer-register-page {
-  padding: 2rem;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f6f8fc;
+  background-image: url('./images/helix-cruzeiro.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   min-height: 100vh;
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.5rem; /* 🔧 Slightly reduced to lift form */
 }
 
 /* 🧱 Form Container */
 .form-container {
+  width: 100%;
   max-width: 740px;
-  margin: 0 auto;
-  background: #ffffff;
-  padding: 2rem;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 1.5rem; /* 🔧 Reduced from 2rem */
+  margin-top: 1rem; /* 🔧 Reduced from 2rem */
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   box-sizing: border-box;
 }
 
@@ -23,7 +30,7 @@
   font-size: 2rem;
   font-weight: 900;
   color: #0d1b2a;
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem; /* 🔧 Reduced further */
   text-align: center;
 }
 
@@ -31,15 +38,15 @@
   font-size: 1rem;
   color: #333;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem; /* 🔧 Reduced further */
 }
 
 /* 🧾 Form Layout */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 0.5rem; /* 🔧 Reduced from 0.75rem */
+  margin-top: 0.5rem; /* 🔧 Reduced from 1rem */
 }
 
 /* 🧾 Form Fields */
@@ -50,8 +57,8 @@
 .form select,
 .form textarea {
   width: 100%;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
+  margin-bottom: 0.4rem;     /* 🔧 Reduced from 0.5rem */
+  padding: 0.6rem;           /* 🔧 Slightly reduced padding */
   border-radius: 6px;
   border: 1px solid #ccd1d9;
   font-size: 1rem;
@@ -62,17 +69,45 @@
 /* 🏷 Labels */
 .form-fields label,
 .form label {
+  color: #0d1b2a;
   font-weight: 600;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem; /* 🔧 Slightly reduced */
   display: block;
+}
+
+/* 📌 Notes or disclaimers */
+.form-note,
+.form-disclaimer,
+.form p {
+  color: #0d1b2a;
+  font-size: 0.95rem;
+  margin-top: 0.75rem; /* 🔧 Reduced */
+  margin-bottom: 0.75rem;
+}
+
+/* ✅ Specific bottom note above submit button */
+.file-note {
+  color: #0d1b2a;
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+/* ✅ Ensure <small> tags are visible */
+form small {
+  color: #0d1b2a;
+  font-size: 0.95rem;
+  display: block;
+  margin-top: 0.5rem;
 }
 
 /* ✅ Checkbox Group */
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  gap: 0.5rem; /* 🔧 Reduced from 0.75rem */
+  margin-bottom: 0.75rem; /* 🔧 Reduced */
 }
 
 .checkbox-group label {
@@ -108,7 +143,7 @@
 /* 🟩 Submit Button */
 button[type="submit"],
 .form button {
-  margin-top: 2rem;
+  margin-top: 1.5rem; /* 🔧 Reduced from 2rem */
   background-color: #2ea043;
   color: #fff;
   padding: 0.75rem 1.25rem;

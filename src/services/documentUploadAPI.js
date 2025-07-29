@@ -1,5 +1,4 @@
-// src/services/documentUploadAPI.js
-import { db, storage } from "./firebase";
+import { db } from "../services/firebase";
 import {
   collection,
   doc,
@@ -18,8 +17,6 @@ import {
 } from "firebase/storage";
 import { checkAppAccess } from "./mobileSecurity";
 
-
-// ✅ Upload Certificate Logic (Preserved)
 export async function uploadCertificate(documentData, userId) {
   if (!checkAppAccess()) {
     throw new Error('🚫 Session expired or invalid permissions');
@@ -58,14 +55,10 @@ export async function uploadCertificate(documentData, userId) {
   }
 }
 
-
-// ✅ New Generic Upload Interface (Optional Wrapper)
 export async function uploadDocument(wsrnId, file, docType) {
   return await uploadCertificate({ file, type: docType }, wsrnId);
 }
 
-
-// ✅ New: Fetch Documents for Dashboard Display
 export async function fetchDocuments(wsrnId) {
   try {
     const docsRef = collection(db, "user_documents");
@@ -82,13 +75,10 @@ export async function fetchDocuments(wsrnId) {
   }
 }
 
-
-// ✅ New: Sync Renewal Alerts
 export async function syncRenewal(wsrnId, docType) {
   try {
     const message = `📢 WSRN Alert: Renewal of ${docType} received for ${wsrnId}`;
     console.log(message);
-    // Optional: Log to Firestore or trigger admin email
     await addDoc(collection(db, "wsrn_notifications"), {
       wsrnId,
       type: "DocumentRenewal",
@@ -101,8 +91,6 @@ export async function syncRenewal(wsrnId, docType) {
   }
 }
 
-
-// ✅ Update Document Status and Cleanup
 export async function updateDocumentStatus(documentId, newStatus) {
   try {
     const documentRef = doc(db, "user_documents", documentId);
@@ -132,8 +120,6 @@ export async function updateDocumentStatus(documentId, newStatus) {
   }
 }
 
-
-// ✅ Optional: Progress-Aware Upload (for UI feedback)
 export const uploadFileWithProgress = (file, path) => {
   return new Promise((resolve, reject) => {
     const storageRef = ref(storage, path);
@@ -169,4 +155,3 @@ export const uploadFileWithProgress = (file, path) => {
     );
   });
 };
-

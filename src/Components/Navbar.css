@@ -2,50 +2,60 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
   background-color: #003366;
+  padding: 1rem 2rem;
   color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  z-index: 100;
 }
 
 .navbar-left .navbar-logo {
-  color: #ffffff;
   font-size: 1.5rem;
-  text-decoration: none;
   font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .navbar-right a {
-  margin-left: 1rem;
   color: #ffffff;
   text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar-right a:hover {
+  text-decoration: underline;
 }
 
 .navbar-dropdown {
   position: relative;
-  display: inline-block;
-  margin-left: 1rem;
 }
 
 .dropdown-toggle {
   background: none;
   border: none;
   color: #ffffff;
-  font-size: 1rem;
-  cursor: pointer;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: 2rem;
+  right: 0;
   background-color: #003366;
-  padding: 0.5rem 0;
+  border: 1px solid #ffffff;
   border-radius: 6px;
+  padding: 0.5rem 1rem;
   display: none;
   flex-direction: column;
-  z-index: 999;
-  min-width: 200px;
+  z-index: 200;
 }
 
 .navbar-dropdown:hover .dropdown-menu {
@@ -55,12 +65,10 @@
 .dropdown-menu a {
   color: #ffffff;
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: background 0.3s ease;
+  margin: 0.25rem 0;
 }
 
 .dropdown-menu a:hover {
-  background-color: #00509e;
-  border-radius: 4px;
+  text-decoration: underline;
 }
 

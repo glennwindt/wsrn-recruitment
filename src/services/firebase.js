@@ -5,48 +5,62 @@ import {
   getAuth,
   setPersistence,
   browserSessionPersistence,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut
 } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  setDoc
+} from "firebase/firestore";
 
-// your actual Firebase config here
+// ✅ Real Firebase config (make sure this is correct)
 const firebaseConfig = {
-  apiKey:     "AIzaSyABC123...WSRN",
+  apiKey: "AIzaSyABC123...WSRN",
   authDomain: "wsrn-recruitment.firebaseapp.com",
-  projectId:  "wsrn-recruitment",
-  // …other keys…
+  projectId: "wsrn-recruitment",
+  storageBucket: "wsrn-recruitment.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
-// 1) Initialize App
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
 
-// 2) Named export: auth instance
-export const auth = getAuth(app);
-
-// 3) Session persistence
+// Optional: Session persistence and auth state mirroring
 setPersistence(auth, browserSessionPersistence).catch(err =>
   console.error("WSRN Auth Persistence Error:", err)
 );
 
-// 4) Named export: firestore
-export const db = getFirestore(app);
-
-// 5) Mirror auth state to localStorage (optional)
 onAuthStateChanged(auth, user => {
   if (user) {
-    localStorage.setItem(
-      "wsrn_user",
-      JSON.stringify({ uid: user.uid, email: user.email })
-    );
+    localStorage.setItem("wsrn_user", JSON.stringify({ uid: user.uid, email: user.email }));
   } else {
     localStorage.removeItem("wsrn_user");
   }
 });
 
-// 6) Named exports for your auth helpers
-export { signInWithEmailAndPassword, signOut };
+// Export services
+export {
+  auth,
+  db,
+  provider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  collection,
+  addDoc,
+  doc,
+  setDoc
+};
 
-// 7) Default export for workaround
-export default { auth, db, signInWithEmailAndPassword, signOut };

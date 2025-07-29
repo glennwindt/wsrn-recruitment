@@ -11,19 +11,19 @@
     "eject": "react-scripts eject",
     "deploy": "npm run build && firebase deploy",
     "serve": "firebase emulators:start",
-    "lint": "eslint src --ext .js,.jsx"
+    "lint": "eslint src --ext .js,.js"
   },
   "dependencies": {
     "browserslist": "^4.21.1",
-    "firebase": "^10.11.1",
+    "dayjs": "^1.11.13",
+    "firebase": "^10.14.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-firebase-hooks": "^5.1.0",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.30.1",
-    "react-scripts": "^5.0.1",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1"
   },
@@ -32,7 +32,7 @@
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-js-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "^8.5.6",
@@ -54,5 +54,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glennwindt/wsrn-recruitment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/glennwindt/wsrn-recruitment/issues"
   }
 }

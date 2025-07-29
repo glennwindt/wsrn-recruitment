@@ -14,7 +14,7 @@
 
 
 
-\- Introduced a modern \*\*three-pane homepage layout\*\* (`Home.jsx` + `Home.css`)
+\- Introduced a modern \*\*three-pane homepage layout\*\* (`Home.js` + `Home.css`)
 
 &nbsp; - 💡 Header with WSRN logo and navigation (Home, About, Contact, Log In)
 
@@ -52,7 +52,7 @@
 
 &nbsp; - `widgets/`
 
-\- Added `DashboardSidebar.jsx` with responsive mobile toggle
+\- Added `DashboardSidebar.js` with responsive mobile toggle
 
 \- Created `overview/Dashboard.js` with company finance summary using ledger utilities
 
@@ -68,9 +68,9 @@
 
 \- Built fully styled pages for:
 
-&nbsp; - `SeafarerRegister.jsx` with country selector and boarding preferences
+&nbsp; - `SeafarerRegister.js` with country selector and boarding preferences
 
-&nbsp; - `AgencyRegister.jsx`, `ShippingRegister.jsx`, and `TrainingRegister.jsx` scaffolded and styled
+&nbsp; - `AgencyRegister.js`, `ShippingRegister.js`, and `TrainingRegister.js` scaffolded and styled
 
 
 
@@ -118,7 +118,7 @@
 
 
 
-\- Created `AccessControl.js` (admin), `AuthContext.jsx`, and `FinanceContext.js`
+\- Created `AccessControl.js` (admin), `AuthContext.js`, and `FinanceContext.js`
 
 
 
@@ -132,7 +132,7 @@
 
 \- Removed deprecated components (`App.js`, backup JSONs)
 
-\- Replaced with `App.jsx` and modular `AppRoutes.jsx`
+\- Replaced with `App.js` and modular `AppRoutes.js`
 
 \- Deleted legacy Firebase config (pending migration)
 

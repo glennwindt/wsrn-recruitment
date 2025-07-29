@@ -1,17 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.js";
+import { AuthProvider } from "./context/AuthContext.js";
 
-import { AuthProvider } from './context/AuthContext'; // ✅ Add this import
+function RootComponent() {
+  return React.createElement(AuthProvider, null,
+    React.createElement(App)
+  );
+}
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById("root"));
+root.render(React.createElement(RootComponent));
 
-root.render(
-  <React.StrictMode>
-    <AuthProvider> {/* ✅ Provide context to all components */}
-      <App />
-    </AuthProvider>
-  </React.StrictMode>
-);
 
