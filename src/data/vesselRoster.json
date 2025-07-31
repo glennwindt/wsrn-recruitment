@@ -1,0 +1,48 @@
+{
+  "vesselId": "V001",
+  "vesselName": "MV Grace Horizon",
+  "departurePort": "Lisbon",
+  "destinationPort": "Cape Town",
+  "crew": [
+    {
+      "id": "C001",
+      "fullName": "Captain Elias Moreau",
+      "role": "Captain",
+      "email": "elias.moreau@gracehorizon.org",
+      "phone": "+351 912 345 678",
+      "certifications": ["Master Mariner", "Bridge Resource Management"],
+      "emergencyContact": {
+        "name": "Isabelle Moreau",
+        "relation": "Spouse",
+        "phone": "+351 934 567 890"
+      }
+    },
+    {
+      "id": "C002",
+      "fullName": "Chief Officer Amina Yusuf",
+      "role": "Chief Officer",
+      "email": "amina.yusuf@gracehorizon.org",
+      "phone": "+351 913 456 789",
+      "certifications": ["STCW Advanced Navigation", "Cargo Handling"],
+      "emergencyContact": {
+        "name": "Khalid Yusuf",
+        "relation": "Brother",
+        "phone": "+44 7700 900123"
+      }
+    },
+    {
+      "id": "C003",
+      "fullName": "Deck Cadet Mateo Cruz",
+      "role": "Deck Cadet",
+      "email": "mateo.cruz@example.com",
+      "phone": "+63 912 345 6789",
+      "certifications": ["STCW Basic Training"],
+      "emergencyContact": {
+        "name": "Lucia Cruz",
+        "relation": "Mother",
+        "phone": "+63 917 654 3210"
+      }
+    }
+  ]
+}
+

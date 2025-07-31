@@ -1,0 +1,32 @@
+.floating-logo-container {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 999;
+  animation: floatUpDown 4s ease-in-out infinite;
+}
+
+.floating-logo {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  animation: rotateCoin 8s linear infinite;
+  transform-style: preserve-3d;
+}
+
+/* Spin side-to-side like a coin */
+@keyframes rotateCoin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Soft bounce up and down */
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+

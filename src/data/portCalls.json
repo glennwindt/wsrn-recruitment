@@ -1,0 +1,33 @@
+[
+  {
+    "id": "PC001",
+    "vesselId": "V001",
+    "port": "Lisbon",
+    "country": "Portugal",
+    "event": "Departure",
+    "timestamp": "2025-07-26T08:30:00Z",
+    "nextPort": "Cape Town",
+    "etaNextPort": "2025-08-05T14:00:00Z"
+  },
+  {
+    "id": "PC002",
+    "vesselId": "V001",
+    "port": "Cape Town",
+    "country": "South Africa",
+    "event": "Arrival",
+    "timestamp": "2025-08-05T13:45:00Z",
+    "prevPort": "Lisbon",
+    "atBerth": true
+  },
+  {
+    "id": "PC003",
+    "vesselId": "V001",
+    "port": "Cape Town",
+    "country": "South Africa",
+    "event": "Departure",
+    "timestamp": "2025-08-10T09:00:00Z",
+    "nextPort": "Durban",
+    "etaNextPort": "2025-08-12T16:00:00Z"
+  }
+]
+

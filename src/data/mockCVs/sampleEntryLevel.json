@@ -1,0 +1,33 @@
+{
+  "id": "SE001",
+  "fullName": "Mateo Cruz",
+  "age": 22,
+  "nationality": "Philippines",
+  "email": "mateo.cruz@example.com",
+  "phone": "+63 912 345 6789",
+  "preferredLocation": "Asia-Pacific",
+  "availability": "Immediate",
+  "skills": ["Basic Safety Training", "First Aid", "Deck Operations"],
+  "languages": ["English", "Tagalog"],
+  "certifications": [
+    {
+      "name": "STCW Basic Training",
+      "issuedBy": "Maritime Authority of the Philippines",
+      "issueDate": "2024-06-15",
+      "expiryDate": "2029-06-15"
+    }
+  ],
+  "experience": {
+    "seaTimeMonths": 0,
+    "internships": [
+      {
+        "organization": "Pacific Horizon Institute",
+        "durationWeeks": 6,
+        "focus": "Deck Familiarization"
+      }
+    ]
+  },
+  "goals": ["Gain sea time", "Advance to Able Seaman", "Serve on humanitarian missions"],
+  "active": true
+}
+

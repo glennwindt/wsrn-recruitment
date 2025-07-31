@@ -1,0 +1,117 @@
+.about-background {
+  background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.5)), url('../images/containership.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 1.25rem;
+  color: #c9d1d9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-top: 2.2rem;
+}
+
+.about-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 0.2rem;
+  color: #ffffff;
+}
+
+.about-subtitle {
+  color: #58a6ff;
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+}
+
+.about-tagline {
+  font-style: italic;
+  color: #58a6ff;
+  margin-top: 0.25rem;
+}
+
+.tagline-large {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.about-hero-image {
+  display: block;
+  width: 100%;
+  max-width: 880px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  margin: 2rem auto;
+}
+
+.about-box.unified {
+  background-color: rgba(22, 27, 34, 0.6);
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  box-shadow: 0 0 14px rgba(0,0,0,0.25);
+  text-align: left;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto 2rem auto;
+}
+
+.section-block {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.about-box-title {
+  font-size: 1.5rem;
+  color: #58a6ff;
+  margin-bottom: 0.1rem;
+  text-align: left;
+}
+
+.about-box-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-box-text {
+  font-size: 1rem;
+  line-height: 1.25;
+  margin-bottom: 0.15rem;
+  color: #c9d1d9;
+  text-align: left;
+}
+
+.about-footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.back-button {
+  display: inline-block;
+  background-color: #238636;
+  color: white;
+  padding: 0.75rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #2ea043;
+}
+
+.dev-tracker-container {
+  margin-top: 2rem;
+}
+

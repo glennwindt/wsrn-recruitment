@@ -19,7 +19,7 @@ export default function Navbar() {
         <div className="navbar-dropdown">
           <button
             className="dropdown-toggle"
-            onClick={() => setDropdownOpen(!dropdownOpen)}
+            onClick={() => setDropdownOpen((prev) => !prev)}
           >
             Register ▾
           </button>

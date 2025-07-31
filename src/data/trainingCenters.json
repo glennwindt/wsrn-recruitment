@@ -1,0 +1,39 @@
+[
+  {
+    "id": "TC001",
+    "name": "Helix Maritime Academy",
+    "location": {
+      "city": "Lisbon",
+      "country": "Portugal"
+    },
+    "capacity": 120,
+    "specialties": ["Navigation", "Spiritual Leadership", "Safety Protocols"],
+    "contactEmail": "info@helixmaritime.pt",
+    "active": true
+  },
+  {
+    "id": "TC002",
+    "name": "Ocean Faith Training Center",
+    "location": {
+      "city": "Cape Town",
+      "country": "South Africa"
+    },
+    "capacity": 80,
+    "specialties": ["Crew Ethics", "Prayer Ministry", "Compliance"],
+    "contactEmail": "admin@oceanfaith.org",
+    "active": true
+  },
+  {
+    "id": "TC003",
+    "name": "Pacific Horizon Institute",
+    "location": {
+      "city": "Manila",
+      "country": "Philippines"
+    },
+    "capacity": 150,
+    "specialties": ["Engineering", "Chaplaincy", "Emergency Response"],
+    "contactEmail": "contact@pacifichorizon.ph",
+    "active": false
+  }
+]
+

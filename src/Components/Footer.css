@@ -1,0 +1,20 @@
+.footer-wrapper {
+  background-color: #0d1b2a;
+  color: #f4f9fc;
+  text-align: center;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  margin-top: auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Optional: Responsive Tweak */
+@media (max-width: 600px) {
+  .footer-wrapper {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
