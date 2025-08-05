@@ -1,0 +1,22 @@
+.crew-insights {
+  background-color: #f9f9f9;
+  border-left: 4px solid #4caf50;
+  padding: 1rem;
+  margin-top: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.crew-insights h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.crew-insights ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.crew-insights li {
+  margin-bottom: 0.5rem;
+}
+

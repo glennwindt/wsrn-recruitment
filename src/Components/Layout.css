@@ -1,0 +1,35 @@
+/* src/components/Layout.css */
+
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1rem 1rem 0.25rem 1rem; /* further reduced bottom padding */
+}
+
+footer {
+  margin-top: auto;
+}
+
+/* New black bar header for /tracking page */
+.black-bar {
+  background-color: #000;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+

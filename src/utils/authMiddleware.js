@@ -1,21 +1,32 @@
 // src/utils/authMiddleware.js
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// CORRECTED: Import 'auth' as a default export from your custom firebase service file.
 import { auth } from '../services/firebase';
 
-export const useRequireAuth = () => {
+/**
+ * Custom hook to protect routes by requiring authentication.
+ * Redirects to login if user is not authenticated.
+ *
+ * @param {string} redirectPath - Path to redirect unauthenticated users (default: '/login')
+ */
+export const useRequireAuth = (redirectPath = '/login') => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // onAuthStateChanged is a method of the default 'auth' object
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
-        navigate('/login');
+        navigate(redirectPath);
       }
     });
 
-    return () => unsubscribe();
-  }, [navigate]);
+    // Cleanup listener on unmount
+    return () => {
+      if (typeof unsubscribe === 'function') {
+        unsubscribe();
+      }
+    };
+  }, [navigate, redirectPath]);
 };
+
+

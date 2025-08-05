@@ -5,9 +5,9 @@
  * Based on number of active vessels
  */
 export function getShippingMembershipTier(vesselCount) {
-  if (vesselCount <= 5) return "Tier 1";
-  if (vesselCount <= 10) return "Tier 2";
-  return "Tier 3 – Unlimited Access";
+  if (vesselCount <= 5) return 'Tier 1';
+  if (vesselCount <= 10) return 'Tier 2';
+  return 'Tier 3 – Unlimited Access';
 }
 
 /**
@@ -15,9 +15,9 @@ export function getShippingMembershipTier(vesselCount) {
  * Based on number of active seafarer placements
  */
 export function getAgencyMembershipTier(placements) {
-  if (placements <= 25) return "Basic Plan";
-  if (placements <= 50) return "Pro Plan";
-  return "Enterprise – Unlimited Access";
+  if (placements <= 25) return 'Basic Plan';
+  if (placements <= 50) return 'Pro Plan';
+  return 'Enterprise – Unlimited Access';
 }
 
 /**
@@ -45,7 +45,7 @@ export function shouldTriggerCommissionNotice(effectiveDate, noticePeriodDays = 
  * Can be reused for display or invoice preview
  */
 export function getBillingSummary({ model, vesselCount, placements, contractDate, effectiveDate, oldRate, newRate }) {
-  if (model === "membership") {
+  if (model === 'membership') {
     return {
       model,
       shippingTier: getShippingMembershipTier(vesselCount),

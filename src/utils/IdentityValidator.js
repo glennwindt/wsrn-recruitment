@@ -1,5 +1,5 @@
 const mockDatabase = [
-  { name: "Maria Esteban", dob: "1988-10-05", passport: "PX82938" }
+  { name: 'Maria Esteban', dob: '1988-10-05', passport: 'PX82938' }
 ];
 
 export function verifyIdentity({ name, dob, passport }) {

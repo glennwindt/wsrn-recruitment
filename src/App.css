@@ -10,7 +10,7 @@ html, body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #0d1b2a;
   color: #f4f9fc;
-  overflow-x: hidden; /* ✅ Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
 /* 🧱 Root Layout */
@@ -73,6 +73,27 @@ button {
 
 button:hover {
   background-color: #005f8a;
+}
+
+/* 🌍 Global Header Title */
+.header-global {
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 4px;
+}
+
+.header-global .title-line {
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 2px;
+}
+
+.header-global .subtitle-line {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #dddddd;
+  margin-top: 0;
 }
 
 /* 🧭 Page Containers */

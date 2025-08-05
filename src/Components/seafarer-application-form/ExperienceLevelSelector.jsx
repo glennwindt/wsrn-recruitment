@@ -1,18 +1,14 @@
-// src/components/seafarer-application-form/ExperienceLevelSelector.jsx
+import React from 'react';
 
-import React, { useState } from 'react';
-
-const ExperienceLevelSelector = () => {
-  const [experienceLevel, setExperienceLevel] = useState('');
-  
+const ExperienceLevelSelector = ({ experienceLevel, handleChange }) => {
   return (
-    <div className="bg-white p-4 rounded shadow-md">
+    <div className="bg-white p-4 rounded shadow-md mt-6">
       <h2 className="text-xl font-semibold mb-4">Experience Level</h2>
 
       <select
         name="experienceLevel"
         value={experienceLevel}
-        onChange={(e) => setExperienceLevel(e.target.value)}
+        onChange={handleChange}
         className="w-full border p-2 mb-4"
         required
       >
@@ -23,7 +19,6 @@ const ExperienceLevelSelector = () => {
         <option value="Trainee">Trainee</option>
       </select>
 
-      {/* Conditional fields based on experience */}
       {experienceLevel && (
         <div className="text-sm text-gray-600">
           Selected Role: <strong>{experienceLevel}</strong>
@@ -34,3 +29,4 @@ const ExperienceLevelSelector = () => {
 };
 
 export default ExperienceLevelSelector;
+

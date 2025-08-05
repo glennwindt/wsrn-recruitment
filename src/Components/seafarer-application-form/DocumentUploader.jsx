@@ -1,35 +1,36 @@
-// src/components/seafarer-application-form/DocumentUploader.jsx
+import React from 'react';
 
-import React, { useState } from 'react';
-
-const DocumentUploader = () => {
-  const [documents, setDocuments] = useState([]);
-
-  const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
-    setDocuments(files);
-  };
+const DocumentUploader = ({ documents, handleFileChange }) => {
+  const documentFields = [
+    { name: 'passport', label: 'Passport' },
+    { name: 'certificate', label: 'Certificate' },
+    { name: 'cv', label: 'CV / Resume' },
+  ];
 
   return (
-    <div className="bg-white p-4 rounded shadow-md">
+    <div className="bg-white p-4 rounded shadow-md mt-6">
       <h2 className="text-xl font-semibold mb-4">Upload Documents</h2>
 
-      <input
-        type="file"
-        multiple
-        onChange={handleFileChange}
-        className="w-full border p-2"
-      />
-
-      {documents.length > 0 && (
-        <ul className="mt-4 list-disc ml-5 text-sm text-gray-600">
-          {documents.map((file, index) => (
-            <li key={index}>{file.name}</li>
-          ))}
-        </ul>
-      )}
+      {documentFields.map(({ name, label }) => (
+        <div key={name} className="mb-4">
+          <label className="block text-sm font-medium mb-1">{label}</label>
+          <input
+            type="file"
+            name={name}
+            accept=".pdf,.jpg,.jpeg,.png"
+            onChange={handleFileChange}
+            className="w-full border p-2"
+          />
+          {documents[name] && (
+            <div className="text-sm text-gray-600 mt-1">
+              Selected: <strong>{documents[name].name}</strong>
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   );
 };
 
 export default DocumentUploader;
+

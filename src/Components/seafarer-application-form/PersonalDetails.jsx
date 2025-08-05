@@ -1,24 +1,7 @@
-// src/components/seafarer-application-form/PersonalDetails.jsx
+import React from 'react';
+import CountrySelector from '../CountrySelector';
 
-import React, { useState } from 'react';
-
-const PersonalDetails = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    familyName: '',
-    dateOfBirth: '',
-    nationality: '',
-    passportNumber: '',
-    passportExpiry: '',
-    phone: '',
-    email: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
+const PersonalDetails = ({ formData, handleChange }) => {
   return (
     <div className="bg-white p-4 rounded shadow-md">
       <h2 className="text-xl font-semibold mb-4">Personal Details</h2>
@@ -62,44 +45,22 @@ const PersonalDetails = () => {
 
         <div>
           <label className="block text-sm font-medium mb-1">Nationality</label>
-          <select
-            name="nationality"
-            value={formData.nationality}
-            onChange={handleChange}
-            className="w-full border p-2"
-            required
-          >
-            <option value="">Select Country</option>
-            <option value="Netherlands">Netherlands</option>
-            <option value="Portugal">Portugal</option>
-            <option value="Philippines">Philippines</option>
-            <option value="Indonesia">Indonesia</option>
-            <option value="Brazil">Brazil</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">Passport Number</label>
-          <input
-            type="text"
-            name="passportNumber"
-            value={formData.passportNumber}
-            onChange={handleChange}
-            className="w-full border p-2"
-            required
+          <CountrySelector
+            selectedCountry={formData.nationality}
+            onCountrySelect={(country) =>
+              handleChange({ target: { name: "nationality", value: country } })
+            }
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Passport Expiry</label>
+          <label className="block text-sm font-medium mb-1">Country Code</label>
           <input
-            type="date"
-            name="passportExpiry"
-            value={formData.passportExpiry}
-            onChange={handleChange}
-            className="w-full border p-2"
-            required
+            type="text"
+            name="countryCode"
+            value={formData.countryCode}
+            readOnly
+            className="w-full border p-2 bg-gray-100"
           />
         </div>
 
@@ -126,9 +87,34 @@ const PersonalDetails = () => {
             required
           />
         </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">Passport Number</label>
+          <input
+            type="text"
+            name="passportNumber"
+            value={formData.passportNumber}
+            onChange={handleChange}
+            className="w-full border p-2"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">Passport Expiry</label>
+          <input
+            type="date"
+            name="passportExpiry"
+            value={formData.passportExpiry}
+            onChange={handleChange}
+            className="w-full border p-2"
+            required
+          />
+        </div>
       </div>
     </div>
   );
 };
 
 export default PersonalDetails;
+

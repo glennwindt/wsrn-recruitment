@@ -1,0 +1,71 @@
+.about-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 40px 20px 20px;
+  margin-bottom: 40px;
+  justify-content: center;
+}
+
+.about-box {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-height: 220px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.about-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.about-box h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.about-box p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #e0e0e0;
+  margin-bottom: 8px;
+}
+
+/* Responsive Tweaks */
+@media screen and (max-width: 1024px) {
+  .about-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 🟢 Tweak spacing beneath homepage button */
+.home-button {
+  display: inline-block;
+  margin-bottom: 8px; /* Reduced from previous spacing */
+}
+
+/* 👣 Footer alignment */
+.footer {
+  margin-top: 0; /* Ensures footer is tucked in nicely */
+}
+
+/* 📦 Container padding tightened */
+.about-container {
+  padding-bottom: 0px;
+}
+

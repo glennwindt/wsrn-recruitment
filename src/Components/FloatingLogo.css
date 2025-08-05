@@ -1,0 +1,33 @@
+/* src/components/FloatingLogo.css */
+
+.floating-logo {
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  z-index: 1000;
+  padding: 5px;
+}
+
+.floating-logo img {
+  width: 170px;
+  height: auto;
+  opacity: 0.95;
+  animation: spinPause 6s ease-in-out infinite;
+}
+
+/* 🌀 Reverse spin with pause */
+@keyframes spinPause {
+  0% {
+    transform: rotateY(0deg);
+  }
+  40% {
+    transform: rotateY(-360deg); /* ⬅️ Reverse direction */
+  }
+  60% {
+    transform: rotateY(-360deg); /* ⏸ Hold position for pause */
+  }
+  100% {
+    transform: rotateY(0deg); /* Reset for next loop */
+  }
+}
+

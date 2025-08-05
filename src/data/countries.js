@@ -1,0 +1,25 @@
+export const countries = [
+  { name: 'Afghanistan', code: 'AF', dialCode: '+93', currency: 'Afghani', currencyCode: 'AFN' },
+  { name: 'Albania', code: 'AL', dialCode: '+355', currency: 'Lek', currencyCode: 'ALL' },
+  { name: 'Algeria', code: 'DZ', dialCode: '+213', currency: 'Algerian Dinar', currencyCode: 'DZD' },
+  { name: 'Andorra', code: 'AD', dialCode: '+376', currency: 'Euro', currencyCode: 'EUR' },
+  { name: 'Angola', code: 'AO', dialCode: '+244', currency: 'Kwanza', currencyCode: 'AOA' },
+  { name: 'Argentina', code: 'AR', dialCode: '+54', currency: 'Argentine Peso', currencyCode: 'ARS' },
+  { name: 'Australia', code: 'AU', dialCode: '+61', currency: 'Australian Dollar', currencyCode: 'AUD' },
+  { name: 'Austria', code: 'AT', dialCode: '+43', currency: 'Euro', currencyCode: 'EUR' },
+  { name: 'Bangladesh', code: 'BD', dialCode: '+880', currency: 'Taka', currencyCode: 'BDT' },
+  { name: 'Belgium', code: 'BE', dialCode: '+32', currency: 'Euro', currencyCode: 'EUR' },
+  { name: 'Brazil', code: 'BR', dialCode: '+55', currency: 'Brazilian Real', currencyCode: 'BRL' },
+  { name: 'Canada', code: 'CA', dialCode: '+1', currency: 'Canadian Dollar', currencyCode: 'CAD' },
+  { name: 'China', code: 'CN', dialCode: '+86', currency: 'Yuan Renminbi', currencyCode: 'CNY' },
+  { name: 'Denmark', code: 'DK', dialCode: '+45', currency: 'Danish Krone', currencyCode: 'DKK' },
+  { name: 'Egypt', code: 'EG', dialCode: '+20', currency: 'Egyptian Pound', currencyCode: 'EGP' },
+  { name: 'France', code: 'FR', dialCode: '+33', currency: 'Euro', currencyCode: 'EUR' },
+  { name: 'Germany', code: 'DE', dialCode: '+49', currency: 'Euro', currencyCode: 'EUR' },
+  { name: 'India', code: 'IN', dialCode: '+91', currency: 'Indian Rupee', currencyCode: 'INR' },
+  { name: 'Japan', code: 'JP', dialCode: '+81', currency: 'Yen', currencyCode: 'JPY' },
+  { name: 'United Kingdom', code: 'GB', dialCode: '+44', currency: 'Pound Sterling', currencyCode: 'GBP' },
+  { name: 'United States', code: 'US', dialCode: '+1', currency: 'US Dollar', currencyCode: 'USD' },
+  // ... and 170+ more
+];
+

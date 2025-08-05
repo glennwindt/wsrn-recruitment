@@ -12,6 +12,8 @@ import UnauthorizedPage from "./pages/UnauthorizedPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import TrainingCenterDashboard from "./pages/TrainingCenterDashboard";
 import LandingPage from "./pages/LandingPage";
+import Layout from "./components/Layout";
+import TrackingPage from "./pages/TrackingPage";
 
 // 🛡 Dashboards from Components
 import AgencyDashboard from "./components/agency-dashboard/AgencyDashboard";
@@ -30,19 +32,40 @@ import ProtectedRoute from "./routing/ProtectedRoute";
 // 🌐 Global UI
 import Navbar from "./components/Navbar";
 import ChatAgentWidget from "./components/ChatAgentWidget";
+import FloatingLogo from "./components/FloatingLogo";
 
 // 🧭 Global Styles
 import "./App.css";
+
+// 🧮 Payroll Module
+import PayrollDashboard from "./components/PayrollDashboard";
+
+// 🧮 NEW: Salary Calculator Page Component
+import SalaryCalculatorPage from "./pages/SalaryCalculatorPage";
+
+// 🧪 Test Data
+const testEmployee = {
+  name: "João Silva",
+  baseSalary: 2200,
+  hourlyRate: 12,
+  fieldHours: 18,
+  overtimeShifts: [
+    { date: "2025-08-15", hours: 4 },
+    { date: "2025-08-17", hours: 6 },
+    { date: "2025-08-19", hours: 2 },
+  ],
+};
 
 function App() {
   return (
     <div id="root">
       <Router>
         <Navbar />
+        <FloatingLogo />
 
         <main>
           <Routes>
-            {/* 🆕 ✅ Landing Page Route */}
+            {/* 🆕 Landing Page */}
             <Route path="/landing" element={<LandingPage />} />
 
             {/* 🌊 Public Navigation */}
@@ -99,12 +122,21 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            {/* ✅ NEW: Task Tracking Route */}
+            <Route path="/tracking" element={<TrackingPage />} />
+
+            {/* 🧮 Payroll Dashboard Route */}
+            <Route path="/payroll" element={<PayrollDashboard employee={testEmployee} />} />
+
+            {/* 🧮 NEW: Salary Calculator Page */}
+            <Route path="/salarycalculator" element={<SalaryCalculatorPage />} />
           </Routes>
         </main>
 
-       <footer>
-  © 2025 WSRN. All rights reserved. | Powered by oceans of opportunity
-</footer>
+        <footer>
+          © 2025 WSRN. All rights reserved. | Powered by oceans of opportunity
+        </footer>
 
         <ChatAgentWidget />
       </Router>
