@@ -1,6 +1,5 @@
 // src/auth.js
 import {
-  getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
@@ -10,37 +9,25 @@ import {
   updatePassword as fbUpdatePassword,
   onAuthStateChanged
 } from "firebase/auth";
-import { initializeApp } from "firebase/app";
 
-// —————— Initialize Firebase ——————
-const firebaseConfig = {
-  apiKey:             "AIzaSyABC123...WSRN",
-  authDomain:         "wsrn-recruitment.firebaseapp.com",
-  projectId:          "wsrn-recruitment",
-  storageBucket:      "wsrn-recruitment.appspot.com",
-  messagingSenderId:  "123456789-WSRN",
-  appId:              "1:123456789:web:wsrn123abc456"
-};
-
-const app  = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+import { auth } from "../firebase/firebaseConfig"; // ✅ Use shared instance
 
 // —————— Role Logic & Error Mapping ——————
 const determineWSRNRole = (email) => {
-  if (!email)                return "guest";
-  if (email.endsWith("@wsrn.com"))    return "admin";
-  if (email.includes("@agency."))     return "agency";
-  if (email.includes("@shipping."))   return "shipping";
+  if (!email) return "guest";
+  if (email.endsWith("@wsrn.com")) return "admin";
+  if (email.includes("@agency.")) return "agency";
+  if (email.includes("@shipping.")) return "shipping";
   return "seafarer";
 };
 
 const WSRNErrorMessages = {
-  "auth/invalid-email":      "Please enter a valid WSRN email",
-  "auth/user-disabled":      "Your WSRN account is disabled",
-  "auth/user-not-found":     "No WSRN account found with this email",
-  "auth/wrong-password":     "Incorrect WSRN password",
-  "auth/email-already-in-use":"This WSRN email is already registered",
-  "auth/weak-password":      "Password should be at least 6 characters"
+  "auth/invalid-email": "Please enter a valid WSRN email",
+  "auth/user-disabled": "Your WSRN account is disabled",
+  "auth/user-not-found": "No WSRN account found with this email",
+  "auth/wrong-password": "Incorrect WSRN password",
+  "auth/email-already-in-use": "This WSRN email is already registered",
+  "auth/weak-password": "Password should be at least 6 characters"
 };
 
 const getWSRNErrorMessage = (code) =>
@@ -104,10 +91,16 @@ export const updateUserPassword = (newPassword) => {
 };
 
 // Subscribe to auth state changes. Returns the unsubscribe function.
-export const onAuthChange = (callback) => onAuthStateChanged(auth, user => {
-  callback(
-    user
-      ? { uid: user.uid, email: user.email, role: determineWSRNRole(user.email) }
-      : null
-  );
-});
+export const onAuthChange = (callback) =>
+  onAuthStateChanged(auth, (user) => {
+    callback(
+      user
+        ? {
+            uid: user.uid,
+            email: user.email,
+            role: determineWSRNRole(user.email)
+          }
+        : null
+    );
+  });
+

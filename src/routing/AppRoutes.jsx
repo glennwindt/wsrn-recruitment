@@ -1,5 +1,3 @@
-// src/routing/AppRoutes.jsx
-
 import React, { Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
@@ -14,6 +12,13 @@ import RegisterPage     from "../pages/RegisterPage";
 import UnauthorizedPage from "../pages/UnauthorizedPage";
 import PrivacyPolicy    from "../pages/PrivacyPolicy";
 import About            from "../pages/About";
+import Home             from "../pages/Home";
+
+// Login role pages
+import SeafarerLogin from "../pages/SeafarerLogin";
+import AgencyLogin   from "../pages/AgencyLogin";
+import ShippingLogin from "../pages/ShippingLogin";
+import TrainingLogin from "../pages/TrainingLogin";
 
 // Tracking components
 import TaskDashboard     from "../components/TaskDashboard";
@@ -48,12 +53,18 @@ export default function AppRoutes() {
 
         {/* 🌐 Public routes wrapped in Layout */}
         <Route element={<Layout />}>
-          <Route path="/"         element={<LandingPage />} />
+          <Route path="/"         element={<Home />} />
           <Route path="/landing"  element={<LandingPage />} />
           <Route path="/login"    element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/privacy"  element={<PrivacyPolicy />} />
           <Route path="/about"    element={<About />} />
+
+          {/* 🧭 Role-based login routes */}
+          <Route path="/login/seafarer" element={<SeafarerLogin />} />
+          <Route path="/login/agency"   element={<AgencyLogin />} />
+          <Route path="/login/company"  element={<ShippingLogin />} />
+          <Route path="/login/training" element={<TrainingLogin />} />
 
           {/* 📋 Tracking routes */}
           <Route path="/tracking"  element={<TaskDashboard />} />

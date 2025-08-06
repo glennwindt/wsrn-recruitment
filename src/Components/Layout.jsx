@@ -1,8 +1,10 @@
+// src/components/Layout.jsx
+
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import FloatingLogo from './FloatingLogo';
+// import FloatingLogo from './FloatingLogo'; // ⛔️ Already commented out
 import ChatAgentWidget from './ChatAgentWidget';
 import './Layout.css';
 
@@ -12,21 +14,26 @@ export default function Layout() {
 
   return (
     <div className="layout-wrapper">
-      {/* ✅ Conditional header */}
-      {!isTrackingPage ? (
+      {/* 🔹 Global Header (hidden on /tracking) */}
+      {/* {!isTrackingPage && (
         <header className="header-global">
           <div className="title-line">Worldwide Seafarers Recruitment Network</div>
           <div className="subtitle-line">Your Voyage, Our Mission</div>
         </header>
-      ) : (
-        <div className="black-bar">
+      )} */}
+
+      {/* 🔹 Tracking Dashboard Header */}
+      {isTrackingPage && (
+        <header className="header-dashboard">
           <h2>📋 Task Tracking Dashboard</h2>
-        </div>
+        </header>
       )}
 
+      {/* 🔹 Global Navigation */}
       <Navbar />
-      <FloatingLogo />
+      {/* <FloatingLogo /> */}
 
+      {/* 🔹 Main Content */}
       <div className="content-area">
         <main className="main-content">
           <Outlet />
@@ -34,6 +41,7 @@ export default function Layout() {
         <Footer />
       </div>
 
+      {/* 🔹 Chat Widget */}
       <ChatAgentWidget />
     </div>
   );

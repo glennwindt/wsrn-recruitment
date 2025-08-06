@@ -1,44 +1,15 @@
-/* === Home Layout === */
-.homepage-container {
-  font-family: 'Segoe UI', sans-serif;
-  color: #fff;
-  background: #001f3f;
-}
-
-/* Header */
-.homepage-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 2rem;
-  background-color: #002f6c;
-}
-
-.homepage-header .logo {
-  width: 120px;
-}
-
-.homepage-header nav a {
-  margin-left: 1.5rem;
-  color: #ffffff;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.homepage-header nav a:hover {
-  text-decoration: underline;
-}
-
 /* Hero Section */
 .homepage-hero {
   position: relative;
-  height: 80vh;
-  background-image: url('../images/lisbon-msc.jpg');
+  min-height: calc(100vh - 80px); /* ✅ Adjusted for fixed navbar only */
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
+  background-attachment: scroll;
+  transition: background-image 1s ease-in-out;
 }
 
-/* Overlay with glowing gradient */
+/* Overlay */
 .overlay {
   position: absolute;
   top: 0;
@@ -55,24 +26,30 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 2rem;
+  padding: 1.5rem 1.5rem 0.75rem; /* ✅ Reduced bottom padding */
 }
 
-/* Hero Text Animations */
+/* ✅ Removed logo-emblem to eliminate black bar */
+
+/* Hero Text */
 .overlay h1,
-.overlay p,
-.get-started-btn {
+.overlay p {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 1s ease-out forwards;
 }
 
-.overlay p {
-  animation-delay: 0.3s;
+.overlay h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem); /* ✅ Responsive font size */
+  margin-bottom: 0;
 }
 
-.get-started-btn {
-  animation-delay: 0.6s;
+.overlay p {
+  font-size: clamp(1rem, 2.5vw, 1.2rem); /* ✅ Responsive font size */
+  line-height: 1.4;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem; /* ✅ Slightly reduced bottom margin */
+  max-width: 700px;
 }
 
 @keyframes fadeInUp {
@@ -82,65 +59,22 @@
   }
 }
 
-.overlay h1 {
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
-}
-
-.overlay p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  max-width: 600px;
-}
-
-/* Stats row */
-.mini-stats {
-  margin-top: 1.5rem;
-  font-size: 0.95rem;
-  color: #ddd;
-  display: flex;
-  gap: 2rem;
-}
-
-/* Get Started Button */
-.get-started-btn {
-  background-color: #00509e;
-  color: #fff;
-  padding: 0.75rem 1.6rem;
+/* Dropdown */
+.register-dropdown {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
   border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: box-shadow 0.3s ease;
+  border: 1px solid #f0c040;
+  background-color: #ffe08a;
+  color: #1c1c1e;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 240px;
+  transition: background 0.3s ease;
+  margin-bottom: 0.5rem; /* ✅ Reduced spacing below button */
 }
 
-.get-started-btn:hover {
-  background-color: #0074cc;
-  box-shadow: 0 0 12px #0074cc;
-}
-
-/* Footer */
-.homepage-footer {
-  background-color: #004080;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #ccc;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .overlay h1 {
-    font-size: 2rem;
-  }
-
-  .overlay p {
-    font-size: 1rem;
-    padding: 0 1rem;
-  }
-
-  .mini-stats {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+.register-dropdown:hover {
+  background-color: #fdd77e;
 }
 

@@ -1,8 +1,5 @@
 // src/App.jsx
 
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 // 🔹 Pages
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -12,13 +9,15 @@ import UnauthorizedPage from "./pages/UnauthorizedPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import TrainingCenterDashboard from "./pages/TrainingCenterDashboard";
 import LandingPage from "./pages/LandingPage";
-import Layout from "./components/Layout";
 import TrackingPage from "./pages/TrackingPage";
+import SalaryCalculatorPage from "./pages/SalaryCalculatorPage";
+import TrainingLogin from "./pages/TrainingLogin"; // ✅ Training Login Page
 
 // 🛡 Dashboards from Components
 import AgencyDashboard from "./components/agency-dashboard/AgencyDashboard";
 import SeafarerDashboard from "./components/seafarer-dashboard/SeafarerDashboard";
 import ShippingCompanyDashboard from "./components/shipping-company-dashboard/ShippingCompanyDashboard";
+import PayrollDashboard from "./components/PayrollDashboard";
 
 // 📝 Register Pages
 import SeafarerRegister from "./pages/register/SeafarerRegister";
@@ -37,11 +36,8 @@ import FloatingLogo from "./components/FloatingLogo";
 // 🧭 Global Styles
 import "./App.css";
 
-// 🧮 Payroll Module
-import PayrollDashboard from "./components/PayrollDashboard";
-
-// 🧮 NEW: Salary Calculator Page Component
-import SalaryCalculatorPage from "./pages/SalaryCalculatorPage";
+// 🌐 Routing
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // 🧪 Test Data
 const testEmployee = {
@@ -72,6 +68,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/login/training" element={<TrainingLogin />} /> {/* ✅ Training Login Route */}
             <Route path="/dashboard-login" element={<DashboardLogin />} />
             <Route path="/unauthorized" element={<UnauthorizedPage />} />
 

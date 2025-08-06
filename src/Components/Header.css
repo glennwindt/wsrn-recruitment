@@ -1,0 +1,89 @@
+.navbar {
+  background-color: #002f6c;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.navbar-left .logo {
+  font-size: 1.8rem; /* Slightly smaller */
+  font-weight: bold;
+}
+
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+
+.title {
+  font-size: 1.4rem; /* Slightly smaller */
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 1rem;
+  margin: 0;
+  color: #00bfff;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+
+.navbar-right a {
+  color: white; /* ✅ Make all links white */
+  text-decoration: none;
+}
+
+.navbar-right a:hover {
+  color: #00bfff; /* Optional hover effect */
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #003f8c;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: block;
+  font-size: 0.8rem;
+}
+
+.dropdown-content a:hover {
+  background-color: #005bb5;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
