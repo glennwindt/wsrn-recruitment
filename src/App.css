@@ -1,16 +1,17 @@
 /* 🌐 Global Reset & Layout */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html, body, #root {
   height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
   background-color: #0d1b2a;
   color: #f4f9fc;
+  font-family: 'Segoe UI', sans-serif;
   overflow-x: hidden;
+  border: none;
 }
 
 /* 🧱 Root Layout */
@@ -18,15 +19,17 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
+/* 🧭 Main Content */
 main {
   flex: 1;
+  padding: 0;
+  margin: 0;
   overflow-x: hidden;
 }
 
-/* ⚓ Global Footer Styling */
+/* ⚓ Footer Styling */
 footer {
   background-color: #0d1b2a;
   color: #f4f9fc;
@@ -75,27 +78,6 @@ button:hover {
   background-color: #005f8a;
 }
 
-/* 🌍 Global Header Title */
-.header-global {
-  text-align: center;
-  padding-top: 8px;
-  padding-bottom: 4px;
-}
-
-.header-global .title-line {
-  font-size: 1rem;
-  font-weight: 500;
-  color: white;
-  margin-bottom: 2px;
-}
-
-.header-global .subtitle-line {
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: #dddddd;
-  margin-top: 0;
-}
-
 /* 🧭 Page Containers */
 .page-container,
 .dashboard-page,
@@ -103,5 +85,11 @@ button:hover {
   max-width: 100%;
   overflow-x: hidden;
   padding: 1rem;
+  margin: 0;
+}
+
+/* 🧼 Prevent Empty Headers */
+header:empty {
+  display: none;
 }
 
