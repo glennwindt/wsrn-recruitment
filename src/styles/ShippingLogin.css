@@ -1,29 +1,19 @@
-/* 🚢 Shipping Background */
-body.shipping-login-body {
-  background-image: url("/images/shipping-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.shipping-login-body {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.shipping-login-page {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #ffffff;
 }
 
-/* 🧭 Page Layout */
-.shipping-login-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* 📝 Heading */
-.shipping-login-page h2 {
-  margin-bottom: 1rem;
-  font-size: 2rem;
-}
-
-/* 🧾 Form Styling */
-.login-form {
+.login-form-wrapper {
   background-color: rgba(255, 255, 255, 0.9);
   color: #000000;
   padding: 2rem;
@@ -31,5 +21,12 @@ body.shipping-login-body {
   width: 100%;
   max-width: 400px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 

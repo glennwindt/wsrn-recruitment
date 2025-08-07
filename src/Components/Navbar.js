@@ -10,7 +10,7 @@ function Navbar() {
 
       <div className="navbar-center">
         <h2 className="title">Worldwide Seafarers Recruitment Network</h2>
-        <p className="subtitle">Your Journey, Our Mission</p>
+        <p className="subtitle">Your Voyage, Our Mission</p>
       </div>
 
       <div className="navbar-right">

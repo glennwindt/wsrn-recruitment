@@ -1,5 +1,3 @@
-// src/App.jsx
-
 // 🔹 Pages
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -11,7 +9,11 @@ import TrainingCenterDashboard from "./pages/TrainingCenterDashboard";
 import LandingPage from "./pages/LandingPage";
 import TrackingPage from "./pages/TrackingPage";
 import SalaryCalculatorPage from "./pages/SalaryCalculatorPage";
-import TrainingLogin from "./pages/TrainingLogin"; // ✅ Training Login Page
+import TrainingLogin from "./pages/TrainingLogin";
+import SeafarerLogin from "./pages/SeafarerLogin";
+import ShippingLogin from "./pages/ShippingLogin";
+import AgencyLogin from "./pages/AgencyLogin";
+import PrivacyPolicy from "./pages/PrivacyPolicy"; // ✅ Policy & Procedures Page
 
 // 🛡 Dashboards from Components
 import AgencyDashboard from "./components/agency-dashboard/AgencyDashboard";
@@ -68,7 +70,15 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/login/training" element={<TrainingLogin />} /> {/* ✅ Training Login Route */}
+            <Route path="/policy" element={<PrivacyPolicy />} /> {/* ✅ Policy & Procedures */}
+
+            {/* 🔐 Login Pages */}
+            <Route path="/login/training" element={<TrainingLogin />} />
+            <Route path="/login/seafarer" element={<SeafarerLogin />} />
+            <Route path="/login/shipping" element={<ShippingLogin />} />
+            <Route path="/login/agency" element={<AgencyLogin />} />
+
+            {/* 🧭 Other Public Pages */}
             <Route path="/dashboard-login" element={<DashboardLogin />} />
             <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
