@@ -15,7 +15,7 @@ import ShippingLogin from "./pages/ShippingLogin";
 import AgencyLogin from "./pages/AgencyLogin";
 import PrivacyPolicy from "./pages/PrivacyPolicy"; // ✅ Policy & Procedures Page
 
-// 🛡 Dashboards from Components
+// 🛡 Dashboards
 import AgencyDashboard from "./components/agency-dashboard/AgencyDashboard";
 import SeafarerDashboard from "./components/seafarer-dashboard/SeafarerDashboard";
 import ShippingCompanyDashboard from "./components/shipping-company-dashboard/ShippingCompanyDashboard";
@@ -27,7 +27,7 @@ import AgencyRegister from "./pages/register/AgencyRegister";
 import ShippingRegister from "./pages/register/ShippingRegister";
 import TrainingRegister from "./pages/register/TrainingRegister";
 
-// 🔒 Protected Route Wrapper
+// 🔒 Protected Route
 import ProtectedRoute from "./routing/ProtectedRoute";
 
 // 🌐 Global UI
